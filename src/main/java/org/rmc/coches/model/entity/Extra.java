@@ -41,6 +41,12 @@ public class Extra implements Serializable {
     @PrePersist
     public void prePersist() {
         this.createAt = new Date();
+        this.modifyAt = new Date();
+    }
+    
+    public void update(Extra other) {
+        this.nombre = other.nombre;
+        this.modifyAt = new Date();
     }
 
 }

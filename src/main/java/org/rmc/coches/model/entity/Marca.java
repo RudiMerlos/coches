@@ -53,6 +53,7 @@ public class Marca implements Serializable {
     @PrePersist
     public void prePersist() {
         this.createAt = new Date();
+        this.modifyAt = new Date();
     }
 
     public void addCoche(Coche coche) {
@@ -61,6 +62,11 @@ public class Marca implements Serializable {
 
     public void removeCoche(Coche coche) {
         this.coches.remove(coche);
+    }
+    
+    public void update(Marca other) {
+        this.nombre = other.nombre;
+        this.modifyAt = new Date();
     }
 
 }

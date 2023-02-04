@@ -71,6 +71,15 @@ public class Coche implements Serializable {
     @PrePersist
     public void prePersist() {
         this.createAt = new Date();
+        this.modifyAt = new Date();
+    }
+    
+    public void update(Coche other) {
+        this.nombre = other.nombre;
+        this.color = other.color;
+        this.cilindrada = other.cilindrada;
+        this.potencia = other.potencia;
+        this.modifyAt = new Date();
     }
 
 }

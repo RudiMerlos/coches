@@ -56,6 +56,14 @@ public class Precio implements Serializable {
     @PrePersist
     public void prePersist() {
         this.createAt = new Date();
+        this.modifyAt = new Date();
+    }
+    
+    public void update(Precio other) {
+        this.cantidad = other.cantidad;
+        this.fechaInicio = other.fechaInicio;
+        this.fechaFin = other.fechaFin;
+        this.modifyAt = new Date();
     }
 
 }
