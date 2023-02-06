@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
@@ -39,7 +40,7 @@ public class Coche implements Serializable {
     @EqualsAndHashCode.Include
     private Long id;
 
-    private String nombre;
+    private String modelo;
 
     private String color;
 
@@ -61,11 +62,11 @@ public class Coche implements Serializable {
     private Marca marca;
 
     @JsonIgnoreProperties(value = {"coche"}, allowSetters = true)
-    @OneToMany(mappedBy = "precio", fetch = FetchType.LAZY, cascade = CascadeType.ALL,
+    @OneToMany(mappedBy = "coche", fetch = FetchType.LAZY, cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<Precio> precios;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Extra> extras;
 
     @PrePersist
@@ -74,8 +75,26 @@ public class Coche implements Serializable {
         this.modifyAt = new Date();
     }
     
+    public void addPrecio(Precio precio) {
+        this.precios.add(precio);
+        precio.setCoche(this);
+    }
+    
+    public void removePrecio(Precio precio) {
+        this.precios.remove(precio);
+        precio.setCoche(null);
+    }
+    
+    public void addExtra(Extra extra) {
+        this.extras.add(extra);
+    }
+    
+    public void removeExtra(Extra extra) {
+        this.extras.remove(extra);
+    }
+    
     public void update(Coche other) {
-        this.nombre = other.nombre;
+        this.modelo = other.modelo;
         this.color = other.color;
         this.cilindrada = other.cilindrada;
         this.potencia = other.potencia;

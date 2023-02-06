@@ -4,7 +4,7 @@ Tenemos una base de datos donde debemos guardar los siguientes objetos:
 
 - Coches
     - Un coche está asociado con una marca
-    - Un coche está relacionado con vaios precios
+    - Un coche está relacionado con varios precios
     - Un coche puede tener de 0 a N extras
     - Tiene las propiedades:
         - Nombre modelo

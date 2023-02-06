@@ -58,10 +58,12 @@ public class Marca implements Serializable {
 
     public void addCoche(Coche coche) {
         this.coches.add(coche);
+        coche.setMarca(this);
     }
 
     public void removeCoche(Coche coche) {
         this.coches.remove(coche);
+        coche.setMarca(null);
     }
     
     public void update(Marca other) {
