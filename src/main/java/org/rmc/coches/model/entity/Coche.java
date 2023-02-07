@@ -62,8 +62,7 @@ public class Coche implements Serializable {
     private Marca marca;
 
     @JsonIgnoreProperties(value = {"coche"}, allowSetters = true)
-    @OneToMany(mappedBy = "coche", fetch = FetchType.LAZY, cascade = CascadeType.ALL,
-            orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Precio> precios;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -77,12 +76,10 @@ public class Coche implements Serializable {
     
     public void addPrecio(Precio precio) {
         this.precios.add(precio);
-        precio.setCoche(this);
     }
     
     public void removePrecio(Precio precio) {
         this.precios.remove(precio);
-        precio.setCoche(null);
     }
     
     public void addExtra(Extra extra) {
