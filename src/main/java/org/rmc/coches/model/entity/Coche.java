@@ -1,6 +1,7 @@
 package org.rmc.coches.model.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -63,10 +64,10 @@ public class Coche implements Serializable {
     private Marca marca;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Precio> precios;
+    private List<Precio> precios = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private List<Extra> extras;
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Extra> extras = new ArrayList<>();
 
     public String getExtras() {
         StringBuilder result = new StringBuilder();

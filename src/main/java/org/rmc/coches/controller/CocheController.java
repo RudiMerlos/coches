@@ -17,6 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/coches")
 public class CocheController extends CommonController<Coche, CocheService> {
+    
+    @Override
+    public ResponseEntity<?> list() {
+        return ResponseEntity.ok(this.service.findAllCoches());
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> editCoche(@RequestBody Coche coche, @PathVariable Long id) {
