@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/coches")
 public class CocheController extends CommonController<Coche, CocheService> {
-    
+
     @PutMapping("/{id}")
     public ResponseEntity<?> editCoche(@RequestBody Coche coche, @PathVariable Long id) {
         Optional<Coche> o = this.service.findById(id);
@@ -27,7 +27,7 @@ public class CocheController extends CommonController<Coche, CocheService> {
         cocheDB.update(coche);
         return ResponseEntity.status(HttpStatus.CREATED).body(this.service.save(cocheDB));
     }
-    
+
     @PutMapping("/{id}/add-precios")
     public ResponseEntity<?> addPrecios(@RequestBody List<Precio> precios, @PathVariable Long id) {
         Optional<Coche> o = this.service.findById(id);
@@ -37,7 +37,7 @@ public class CocheController extends CommonController<Coche, CocheService> {
         precios.forEach(cocheDB::addPrecio);
         return ResponseEntity.status(HttpStatus.CREATED).body(this.service.save(cocheDB));
     }
-    
+
     @PutMapping("/{id}/delete-precio")
     public ResponseEntity<?> removePrecio(@RequestBody Precio precio, @PathVariable Long id) {
         Optional<Coche> o = this.service.findById(id);

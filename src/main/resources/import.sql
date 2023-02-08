@@ -45,7 +45,7 @@ INSERT INTO coches_precios (coche_id, precios_id) VALUES (10, 6);
 
 INSERT INTO coches_extras (coche_id, extras_id) VALUES (1, 1);
 INSERT INTO coches_extras (coche_id, extras_id) VALUES (1, 2);
-INSERT INTO coches_extras (coche_id, extras_id) VALUES (2, 2);
+INSERT INTO coches_extras (coche_id, extras_id) VALUES (2, 1);
 INSERT INTO coches_extras (coche_id, extras_id) VALUES (2, 2);
 INSERT INTO coches_extras (coche_id, extras_id) VALUES (3, 3);
 INSERT INTO coches_extras (coche_id, extras_id) VALUES (3, 2);

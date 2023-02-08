@@ -54,7 +54,7 @@ public class Precio implements Serializable {
         this.createAt = new Date();
         this.modifyAt = new Date();
     }
-    
+
     public void update(Precio other) {
         this.cantidad = other.cantidad;
         this.fechaInicio = other.fechaInicio;

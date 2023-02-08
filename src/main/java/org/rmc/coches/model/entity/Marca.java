@@ -46,8 +46,7 @@ public class Marca implements Serializable {
     private Date modifyAt;
 
     @JsonIgnoreProperties(value = {"marca"}, allowSetters = true)
-    @OneToMany(mappedBy = "marca", fetch = FetchType.LAZY, cascade = CascadeType.ALL,
-            orphanRemoval = true)
+    @OneToMany(mappedBy = "marca", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Coche> coches = new ArrayList<>();
 
     @PrePersist
@@ -65,7 +64,7 @@ public class Marca implements Serializable {
         this.coches.remove(coche);
         coche.setMarca(null);
     }
-    
+
     public void update(Marca other) {
         this.nombre = other.nombre;
         this.modifyAt = new Date();

@@ -3,6 +3,7 @@ package org.rmc.coches.model.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -58,38 +59,47 @@ public class Coche implements Serializable {
 
     @JsonIgnoreProperties(value = {"coches"})
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "marca_id")
+    @JoinColumn(name = "marca_id", nullable = false)
     private Marca marca;
 
-    @JsonIgnoreProperties(value = {"coche"}, allowSetters = true)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Precio> precios;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Extra> extras;
 
+    public String getExtras() {
+        StringBuilder result = new StringBuilder();
+        this.extras.forEach(e -> {
+            result.append(e.getNombre() + ", ");
+        });
+        if (!result.isEmpty())
+            result.replace(result.lastIndexOf(","), result.length(), "");
+        return result.toString();
+    }
+
     @PrePersist
     public void prePersist() {
         this.createAt = new Date();
         this.modifyAt = new Date();
     }
-    
+
     public void addPrecio(Precio precio) {
         this.precios.add(precio);
     }
-    
+
     public void removePrecio(Precio precio) {
         this.precios.remove(precio);
     }
-    
+
     public void addExtra(Extra extra) {
         this.extras.add(extra);
     }
-    
+
     public void removeExtra(Extra extra) {
         this.extras.remove(extra);
     }
-    
+
     public void update(Coche other) {
         this.modelo = other.modelo;
         this.color = other.color;
