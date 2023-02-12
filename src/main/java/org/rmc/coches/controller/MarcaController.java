@@ -15,6 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/marcas")
 public class MarcaController extends CommonController<Marca, MarcaService> {
 
+    @Override
+    public ResponseEntity<?> list() {
+        return ResponseEntity.ok(this.service.findAllMarcas());
+    }
+
+    @Override
+    public ResponseEntity<?> detail(@PathVariable Long id) {
+        Optional<Marca> o = this.service.findMarcaById(id);
+        if (o.isEmpty())
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(o.get());
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<?> editCoche(@RequestBody Marca marca, @PathVariable Long id) {
         Optional<Marca> o = this.service.findById(id);

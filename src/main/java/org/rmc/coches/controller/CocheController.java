@@ -22,6 +22,14 @@ public class CocheController extends CommonController<Coche, CocheService> {
     public ResponseEntity<?> list() {
         return ResponseEntity.ok(this.service.findAllCoches());
     }
+    
+    @Override
+    public ResponseEntity<?> detail(@PathVariable Long id) {
+        Optional<Coche> o = this.service.findCocheById(id);
+        if (o.isEmpty())
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(o.get());
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> editCoche(@RequestBody Coche coche, @PathVariable Long id) {

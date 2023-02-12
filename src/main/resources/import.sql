@@ -31,6 +31,7 @@ INSERT INTO precios (cantidad, fecha_inicio, fecha_fin, create_at, modify_at) VA
 INSERT INTO precios (cantidad, fecha_inicio, fecha_fin, create_at, modify_at) VALUES (27799, '2022-10-01', '2023-04-20', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 INSERT INTO precios (cantidad, fecha_inicio, fecha_fin, create_at, modify_at) VALUES (24385, '2022-07-01', '2023-10-01', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 INSERT INTO precios (cantidad, fecha_inicio, fecha_fin, create_at, modify_at) VALUES (20385, '2022-03-01', '2023-05-01', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO precios (cantidad, fecha_inicio, fecha_fin, create_at, modify_at) VALUES (19385, '2022-03-01', '2023-05-01', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO coches_precios (coche_id, precios_id) VALUES (1, 1);
 INSERT INTO coches_precios (coche_id, precios_id) VALUES (2, 10);
@@ -42,6 +43,7 @@ INSERT INTO coches_precios (coche_id, precios_id) VALUES (7, 4);
 INSERT INTO coches_precios (coche_id, precios_id) VALUES (8, 7);
 INSERT INTO coches_precios (coche_id, precios_id) VALUES (9, 5);
 INSERT INTO coches_precios (coche_id, precios_id) VALUES (10, 6);
+INSERT INTO coches_precios (coche_id, precios_id) VALUES (1, 11);
 
 INSERT INTO coches_extras (coche_id, extras_id) VALUES (1, 1);
 INSERT INTO coches_extras (coche_id, extras_id) VALUES (1, 2);
